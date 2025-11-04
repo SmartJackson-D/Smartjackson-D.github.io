@@ -1,26 +1,54 @@
 ---
 layout: default
 ---
-<article class="post">
+<article class="post-page">
     <header class="post-header">
         <h1 class="post-title">{{ page.title }}</h1>
+        
         <div class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}">
-                <i class="far fa-calendar"></i> {{ page.date | date: "%Y年%m月%d日" }}
-            </time>
-            <span>
-                <i class="far fa-folder"></i> 
+            <div class="meta-item">
+                <i class="far fa-calendar"></i>
+                <time datetime="{{ page.date | date_to_xmlschema }}">
+                    {{ page.date | date: "%Y年%m月%d日" }}
+                </time>
+            </div>
+            
+            {% if page.categories %}
+            <div class="meta-item">
+                <i class="far fa-folder"></i>
                 {% for category in page.categories %}
-                    <a href="{{ '/categories/' | relative_url }}#{{ category }}">{{ category }}</a>
+                    <a href="{{ '/categories/' | relative_url }}#{{ category | slugify }}">{{ category }}</a>
                     {% unless forloop.last %}, {% endunless %}
                 {% endfor %}
-            </span>
-            <span>
-                <i class="far fa-clock"></i> 
+            </div>
+            {% endif %}
+            
+            {% if page.tags %}
+            <div class="meta-item">
+                <i class="fas fa-tags"></i>
+                {% for tag in page.tags %}
+                    <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>
+                    {% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="meta-item">
+                <i class="far fa-clock"></i>
                 {% assign words = content | number_of_words %}
-                {{ words | divided_by: 200 | plus: 1 }} 分钟阅读
-            </span>
+                {% if words < 360 %}
+                    1 分钟阅读
+                {% else %}
+                    {{ words | divided_by: 180 }} 分钟阅读
+                {% endif %}
+            </div>
         </div>
+
+        {% if page.image %}
+        <div class="post-featured-image">
+            <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+        </div>
+        {% endif %}
     </header>
 
     <div class="post-content">
@@ -28,24 +56,79 @@ layout: default
     </div>
 
     <footer class="post-footer">
+        {% if page.tags %}
         <div class="post-tags">
-            <i class="fas fa-tags"></i>
-            {% for tag in page.tags %}
-                <a href="{{ '/tags/' | relative_url }}#{{ tag }}" class="tag">#{{ tag }}</a>
-            {% endfor %}
+            <h3>文章标签</h3>
+            <div class="tags-cloud">
+                {% for tag in page.tags %}
+                    <a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="tag">{{ tag }}</a>
+                {% endfor %}
+            </div>
         </div>
-        
-        <div class="post-nav">
+        {% endif %}
+
+        <div class="post-navigation">
             {% if page.previous %}
-                <a href="{{ page.previous.url | relative_url }}" class="prev">
-                    ← {{ page.previous.title }}
-                </a>
+            <div class="nav-previous">
+                <span>上一篇</span>
+                <a href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
+            </div>
             {% endif %}
+            
             {% if page.next %}
-                <a href="{{ page.next.url | relative_url }}" class="next">
-                    {{ page.next.title }} →
-                </a>
+            <div class="nav-next">
+                <span>下一篇</span>
+                <a href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
+            </div>
             {% endif %}
+        </div>
+
+        <div class="post-share">
+            <h3>分享文章</h3>
+            <div class="share-buttons">
+                <button class="share-btn" onclick="shareToWeibo()">
+                    <i class="fab fa-weibo"></i>
+                    微博
+                </button>
+                <button class="share-btn" onclick="shareToTwitter()">
+                    <i class="fab fa-twitter"></i>
+                    Twitter
+                </button>
+                <button class="share-btn" onclick="copyLink()">
+                    <i class="fas fa-link"></i>
+                    复制链接
+                </button>
+            </div>
         </div>
     </footer>
 </article>
+
+<script>
+function shareToWeibo() {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent(document.title);
+    window.open(`http://service.weibo.com/share/share.php?url=${url}&title=${title}`, '_blank');
+}
+
+function shareToTwitter() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent(document.title);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+}
+
+function copyLink() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+        alert('链接已复制到剪贴板！');
+    }).catch(() => {
+        // 兼容旧浏览器
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('链接已复制到剪贴板！');
+    });
+}
+</script>
