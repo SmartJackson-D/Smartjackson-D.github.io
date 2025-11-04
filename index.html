@@ -3,35 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>你的名字 - 个人主页</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SmartJackson的个人博客</title>
+    <!-- 引入 Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 引入自定义 CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- 导航栏 -->
     <header>
-        <h1>欢迎访问我的主页</h1>
-        <nav>
-            <a href="#about">关于我</a>
-            <a href="#projects">项目</a>
-            <a href="#contact">联系</a>
-        </nav>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Smart<span>Blog</span></a>
+                <ul class="nav-links">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">技术</a></li>
+                    <li><a href="#">生活</a></li>
+                    <li><a href="#">项目</a></li>
+                    <li><a href="#">关于</a></li>
+                    <li><a href="#">联系</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="搜索文章...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </nav>
+        </div>
     </header>
-    
-    <main>
-        <section id="about">
-            <h2>关于我</h2>
-            <p>这里写你的个人介绍...</p>
-        </section>
-        
-        <section id="projects">
-            <h2>我的项目</h2>
-            <div class="project-grid">
-                <!-- 项目卡片 -->
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <div class="main-content">
+            <!-- 博客文章区域 -->
+            <div class="blog-posts">
+                <!-- 文章1 -->
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="编程">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> 2023年10月15日</span>
+                            <span><i class="far fa-folder"></i> 技术</span>
+                            <span><i class="far fa-comment"></i> 12 评论</span>
+                        </div>
+                        <h2 class="post-title">JavaScript ES6+ 新特性详解</h2>
+                        <p class="post-excerpt">探索JavaScript ES6及更高版本中引入的强大新特性，包括箭头函数、解构赋值、模板字符串等，以及它们如何改变我们编写JavaScript代码的方式。</p>
+                        <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 文章2 -->
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="数据分析">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> 2023年10月10日</span>
+                            <span><i class="far fa-folder"></i> 技术</span>
+                            <span><i class="far fa-comment"></i> 8 评论</span>
+                        </div>
+                        <h2 class="post-title">Python数据分析入门指南</h2>
+                        <p class="post-excerpt">学习如何使用Python进行数据分析，从基础的数据处理到使用Pandas、NumPy和Matplotlib等库进行高级分析，适合初学者入门。</p>
+                        <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- 文章3 -->
+                <article class="post-card">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="旅行">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> 2023年10月5日</span>
+                            <span><i class="far fa-folder"></i> 生活</span>
+                            <span><i class="far fa-comment"></i> 15 评论</span>
+                        </div>
+                        <h2 class="post-title">我的数字游民生活体验</h2>
+                        <p class="post-excerpt">分享我作为一名数字游民在不同国家工作和旅行的经历，包括如何平衡工作与生活，以及远程工作的挑战与乐趣。</p>
+                        <a href="#" class="read-more">阅读更多 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
             </div>
-        </section>
-    </main>
-    
-    <footer id="contact">
-        <p>联系方式：your-email@example.com</p>
+
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+                <!-- 关于我 -->
+                <div class="sidebar-widget about-widget">
+                    <h3 class="widget-title">关于我</h3>
+                    <p>你好，我是SmartJackson，一名热爱技术的全栈开发者。我喜欢分享编程知识和生活感悟。</p>
+                    <p>在这里，我记录我的学习历程、项目经验和生活思考。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- 分类 -->
+                <div class="sidebar-widget categories-widget">
+                    <h3 class="widget-title">文章分类</h3>
+                    <ul class="categories-list">
+                        <li><a href="#">技术 <span>15</span></a></li>
+                        <li><a href="#">编程 <span>12</span></a></li>
+                        <li><a href="#">生活 <span>8</span></a></li>
+                        <li><a href="#">旅行 <span>5</span></a></li>
+                        <li><a href="#">项目 <span>7</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- 最新文章 -->
+                <div class="sidebar-widget recent-posts-widget">
+                    <h3 class="widget-title">最新文章</h3>
+                    <ul class="recent-posts">
+                        <li>
+                            <div class="recent-thumb">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="编程">
+                            </div>
+                            <div class="recent-content">
+                                <h4>JavaScript ES6+ 新特性详解</h4>
+                                <span>2023年10月15日</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recent-thumb">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="数据分析">
+                            </div>
+                            <div class="recent-content">
+                                <h4>Python数据分析入门指南</h4>
+                                <span>2023年10月10日</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="recent-thumb">
+                                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="旅行">
+                            </div>
+                            <div class="recent-content">
+                                <h4>我的数字游民生活体验</h4>
+                                <span>2023年10月5日</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于博客</h3>
+                    <p>这是我的个人博客，记录技术学习、项目经验和生活感悟。希望通过分享帮助他人，也记录自己的成长。</p>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">关于我</a></li>
+                        <li><a href="#">项目作品</a></li>
+                        <li><a href="#">联系我</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>分类</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">技术</a></li>
+                        <li><a href="#">编程</a></li>
+                        <li><a href="#">生活</a></li>
+                        <li><a href="#">旅行</a></li>
+                        <li><a href="#">项目</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> smartjackson@example.com</li>
+                        <li><i class="fas fa-phone"></i> +86 138 0000 0000</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 中国，北京</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 SmartJackson的个人博客. 保留所有权利.</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- 引入自定义 JavaScript -->
+    <script src="js/script.js"></script>
 </body>
 </html>
