@@ -1,1 +1,125 @@
+<aside class="sidebar">
+    <!-- 关于我小部件 -->
+    <div class="sidebar-widget about-widget">
+        <h3 class="widget-title">关于我</h3>
+        <div class="author-info">
+            <div class="author-avatar">
+                <img src="{{ '/assets/images/avatar.jpg' | relative_url }}" alt="{{ site.author.name }}" onerror="this.style.display='none'">
+            </div>
+            <div class="author-details">
+                <h4>{{ site.author.name }}</h4>
+                <p>{{ site.author.description }}</p>
+            </div>
+        </div>
+        <div class="social-links">
+            {% if site.github_username %}
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            {% endif %}
+            {% if site.author.email %}
+            <a href="mailto:{{ site.author.email }}" title="邮箱">
+                <i class="fas fa-envelope"></i>
+            </a>
+            {% endif %}
+            {% if site.author.twitter %}
+            <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            {% endif %}
+            <a href="{{ '/feed.xml' | relative_url }}" title="RSS订阅">
+                <i class="fas fa-rss"></i>
+            </a>
+        </div>
+    </div>
 
+    <!-- 搜索小部件 -->
+    <div class="sidebar-widget search-widget">
+        <h3 class="widget-title">搜索文章</h3>
+        <form class="search-form" onsubmit="return handleSearch(event)">
+            <div class="search-box">
+                <input type="text" id="sidebar-search" placeholder="输入关键词..." required>
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 分类小部件 -->
+    <div class="sidebar-widget categories-widget">
+        <h3 class="widget-title">文章分类</h3>
+        <ul class="categories-list">
+            {% assign categories = site.categories | sort %}
+            {% for category in categories %}
+            <li>
+                <a href="{{ '/categories/' | relative_url }}#{{ category[0] | slugify }}">
+                    {{ category[0] }}
+                    <span class="count">({{ category[1].size }})</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- 标签云小部件 -->
+    <div class="sidebar-widget tags-widget">
+        <h3 class="widget-title">热门标签</h3>
+        <div class="tags-cloud">
+            {% assign tags = site.tags | sort %}
+            {% for tag in tags limit: 15 %}
+            <a href="{{ '/tags/' | relative_url }}#{{ tag[0] | slugify }}" class="tag">
+                {{ tag[0] }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 最新文章小部件 -->
+    <div class="sidebar-widget recent-posts-widget">
+        <h3 class="widget-title">最新文章</h3>
+        <ul class="recent-posts">
+            {% for post in site.posts limit: 5 %}
+            <li>
+                <a href="{{ post.url | relative_url }}" class="recent-post-title">
+                    {{ post.title }}
+                </a>
+                <span class="recent-post-date">
+                    <i class="far fa-calendar"></i>
+                    {{ post.date | date: "%m-%d" }}
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- 归档小部件 -->
+    <div class="sidebar-widget archive-widget">
+        <h3 class="widget-title">文章归档</h3>
+        <ul class="archive-list">
+            {% assign currentYear = site.time | date: "%Y" %}
+            {% for year in (2020..currentYear) reversed %}
+                {% assign yearPosts = site.posts | where: "date", "contains", year %}
+                {% if yearPosts.size > 0 %}
+                <li>
+                    <a href="{{ '/archive/' | relative_url }}#{{ year }}">
+                        {{ year }}年
+                        <span class="count">({{ yearPosts.size }})</span>
+                    </a>
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</aside>
+
+<script>
+function handleSearch(event) {
+    event.preventDefault();
+    const searchTerm = document.getElementById('sidebar-search').value.trim();
+    if (searchTerm) {
+        // 在实际应用中，这里应该跳转到搜索页面
+        alert(`搜索: ${searchTerm}\n\n搜索功能需要后端支持或第三方服务。`);
+        return false;
+    }
+    return false;
+}
+</script>
