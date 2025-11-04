@@ -1,0 +1,47 @@
+# 网站设置
+title: "SmartJackson 的个人博客"
+description: "记录技术学习、项目经验和生活感悟"
+baseurl: "" # 如果你的网站不在根目录，填写子路径
+url: "https://smartjackson-d.github.io" # 你的网站域名
+github_username: SmartJackson-D
+
+# 构建设置
+markdown: kramdown
+permalink: pretty
+timezone: Asia/Shanghai
+future: false
+
+# 插件
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# 作者信息
+author:
+  name: "SmartJackson"
+  email: "smartjackson@example.com"
+  description: "热爱技术的全栈开发者"
+  github: "SmartJackson-D"
+  twitter: "" # 可选
+
+# 社交链接
+social:
+  name: SmartJackson
+  links:
+    - https://github.com/SmartJackson-D
+    - https://gitee.com/ # 可选，码云
+    - mailto:smartjackson@example.com
+
+# 评论系统（可选）
+comments:
+  disqus: "" # 如果需要 Disqus 评论
+
+# 网站统计（可选）
+analytics:
+  google: "" # Google Analytics ID
+  baidu: "" # 百度统计 ID
+
+# 其他设置
+highlighter: rouge
+sass:
+  sass_dir: assets/css
