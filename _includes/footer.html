@@ -1,1 +1,30 @@
-
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>关于博客</h3>
+            <p>{{ site.description }}</p>
+        </div>
+        
+        <div class="footer-section">
+            <h3>快速链接</h3>
+            <ul class="footer-links">
+                <li><a href="{{ '/' | relative_url }}">首页</a></li>
+                <li><a href="{{ '/about' | relative_url }}">关于我</a></li>
+                <li><a href="{{ '/archive' | relative_url }}">文章归档</a></li>
+                <li><a href="{{ site.social.links[0] }}">GitHub</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-section">
+            <h3>联系我</h3>
+            <ul class="footer-links">
+                <li><i class="fas fa-envelope"></i> {{ site.author.email }}</li>
+                <li><i class="fab fa-github"></i> {{ site.github_username }}</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="copyright">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. 保留所有权利.</p>
+    </div>
+</footer>
