@@ -47,7 +47,17 @@
   <p>注释内容不会显示在网页上，这里使用特殊字符的输入方法来写尖括号，所以不是注释，会显示在网页上，在实际注释的时候直接打尖括号就行了</p>
   <h1>学习网页的第三天(3.16)</h1>
   <p>今天没有学习网页技术，学习了git的使用方法，这样我就能再vscode里直接推送文件到仓库里，就不用打开网页更新文件了，那样很麻烦的。</p>
-  
+  <p>第一次使用git，就是在官网上下载下来git软件，然后就能在github里面使用了</p>
+  <h3>第一次链接仓库的方法：</h3>
+  <ol>
+    <li><strong>初始化：</strong>进入本地项目的根目录文件夹，在命令行输入 <code>git init</code>，完成 Git 的初始化，这会创建一个不可见的 <code>.git</code> 文件夹。</li>
+    <li><strong>关联云端：</strong>在命令行输入 <code>git remote add origin "github仓库的网址.git"</code>。这里的 <code>origin</code> 是云端仓库地址的<strong>别名</strong>（为了方便以后不用输长网址）。<i>（PS：使用 GitHub CLI 工具的 <code>gh repo create</code> 命令可以直接在终端创建云端仓库。但是我还没有实践过）</i></li>
+    <li><strong>添加到暂存区：</strong>输入命令 <code>git add .</code> 可以把所有改动过的文件添加到暂存区；如果只想添加指定文件，就输入 <code>git add "文件名"</code>。</li>
+    <li><strong>提交到本地仓库：</strong>使用命令 <code>git commit -m "你的提交说明信息"</code>。</li>
+    <li><strong>空云端仓库推送：</strong>如果云端仓库是空的，直接输入命令 <code>git push -u origin main</code> 推送文件。<code>-u</code> 的作用是建立本地和云端的默认链接，以后推送只需输入 <code>git push</code> 即可。</li>
+    <li><strong>非空云端仓库推送：</strong>如果云端仓库不是空的，需要先输入 <code>git pull origin main</code> 拉取云端文件（有时可能需要加 <code>--allow-unrelated-histories</code>，就是git记录的版本历史不同，一般第一次拉取的时候加上就行），解决冲突之后，再次 add、commit，最后 push 即可。</li>
+  </ol>
+  <p>上面只是第一建立仓库的步骤，每个命令后面的还能加不同的命令内容，有不同的含义，这部分就留到明天来写吧</p>
   <script src="./scripts/main.js"></script>
   </body>
 </html>
