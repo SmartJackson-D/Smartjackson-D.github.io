@@ -64,7 +64,6 @@ strong {
 }
 
 code {
-    background-color: #f0f3f5; /* 浅灰色背景 */
     color: #d63384;            /* 类似 GitHub 的代码紫红色 */
     padding: 3px 6px;
     border-radius: 4px;
