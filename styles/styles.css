@@ -1,72 +1,83 @@
+/* 1. 基础设置：温暖护眼的浅米色/燕麦色背景 */
 html {
   font-size: 10px;
   font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
-  background-color: #00539f;
+  background-color: #f5f0e6; 
 }
 
-h1{
-    font-size: 60px;
-    text-align: center;
-}
-
-h1 {
-  margin: 0;
-  padding: 20px 0;
-  color: #5bc286;
-  text-shadow: 3px 3px 1px rgb(218, 22, 22);
-  font-family: "Ma Shan Zheng", "KaiTi", cursive;
-}
-
-h2{
-  font-size: 20px;
-  text-align:left;
-  margin: 0;
-  padding: 20px 0;
-  color: #5b67c2;
-  font-family: "Ma Shan Zheng", "KaiTi", cursive;
-}
-
-h3{
-  font-size: 18px;
-  text-align:left;
-  margin: 0;
-  padding: 20px 0;
-  color: #5b67c2;
-  font-family: "Ma Shan Zheng", "KaiTi", cursive;
-}
-
-p,li,ol {
-    font-size: 16px;
-    line-height: 2;
-    letter-spacing: 1px;
-    font-family: "Ma Shan Zheng", "KaiTi", cursive;
-}
-
+/* 2. 主容器：柔和的奶白色卡片和暖色阴影 */
 body {
-  width: 1500px;
-  margin:  auto;
-  background-color: #fdfd00;
-  padding: 0 20px 20px 20px;
-  border: 5px solid black;
+  width: 700px;
+  margin: 40px auto;
+  background-color: #fffdf8; /* 偏暖的奶白色，契合米色大背景 */
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(139, 115, 85, 0.08); /* 偏棕色调的轻微立体阴影 */
+  color: #4a4a4a; /* 正文使用深暖灰，比纯黑看着更舒服 */
+}
+
+/* 3. 主标题：深咖啡色，保留你的艺术字体 */
+h1 {
+  font-size: 42px;
+  text-align: center;
+  margin: 0 0 30px 0;
+  color: #5d4037; /* 深咖啡色，沉稳且有质感 */
+  font-family: "Ma Shan Zheng", "KaiTi", cursive;
+  border-bottom: 2px dashed #e6dfd3; /* 暖色虚线分割 */
+  padding-bottom: 20px;
+}
+
+/* 4. 副标题：中度摩卡棕 */
+h2 {
+  font-size: 24px;
+  text-align: left;
+  margin: 30px 0 15px 0;
+  color: #6d4c41; /* 摩卡棕 */
+  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-weight: bold;
+}
+
+/* 小标题：温暖的陶土色/焦糖色 */
+h3 {
+  font-size: 18px;
+  text-align: left;
+  margin: 20px 0 10px 0;
+  color: #b07d62; /* 陶土色，适合做问答区块的提问 */
+  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
+/* 5. 正文和列表：保持无衬线字体，行距舒适 */
+p, li, ol {
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    font-family: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 
 img {
   display: block;
-  margin: 0 auto;
+  margin: 20px auto;
+  max-width: 100%;  /* 这是让图片自动缩放适配body的大小，但是要区分width命令*/
+  border-radius: 8px;
 }
 
 em {
   font-size: 16px;
+  color: #9e9e9e;
+  font-style: normal;
 }
 
+/* 6. 重点和代码块样式优化：配合暖色调 */
 strong {
-    color: #2c3e50;
+    color: #c0392b; /* 经典复古红，在米色背景上非常醒目但不刺眼 */
+    font-weight: bold;
 }
 
 code {
-    color: #d63384;            /* 类似 GitHub 的代码紫红色 */
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-family: 'Consolas', 'Courier New', monospace; /* 等宽字体 */
+    background-color: #f3efe6; /* 稍微深一点的米色底，用来区分代码块 */
+    color: #a04000;            /* 铁锈红，与整体暖色调完美呼应 */
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Courier New', monospace;
     font-size: 0.9em;
 }
