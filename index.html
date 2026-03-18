@@ -58,7 +58,119 @@
     <li><strong>非空云端仓库推送：</strong>如果云端仓库不是空的，需要先输入 <code>git pull origin main</code> 拉取云端文件（有时可能需要加 <code>--allow-unrelated-histories</code>，就是git记录的版本历史不同，一般第一次拉取的时候加上就行），解决冲突之后，再次 add、commit，最后 push 即可。</li>
   </ol>
   <p>上面只是第一建立仓库的步骤，每个命令后面的还能加不同的命令内容，有不同的含义，这部分就留到明天来写吧</p>
-  
+  <h1>学习网页的第四天(3.18)</h1>
+  <p>今天也是学习了git的使用方法，先讲一下git中产生的一些困惑，然后再讲解一下git的一些命令</p>
+  <h2>1. git中产生的一些困惑🌟 Git 实战避坑与核心概念备忘录</h2>
+
+      <ol>
+          <li>
+              <h4>连不上 GitHub 报错 port 443，且每次手动改代理端口太麻烦怎么办？</h4>
+              <div class="scene">遇到场景：Push 或 Pull 时网络超时连不上，每次都要敲 git config 去配代理端口，极其繁琐。</div>
+              <p><span class="highlight">终极解决方案：</span>放弃手动配置 Git 代理，直接开启代理软件的 <strong>“TUN 模式”（虚拟网卡模式）</strong>。</p>
+              <p>1. <strong>清空旧设置：</strong>在终端运行以下命令让 Git 恢复白纸状态：</p>
+              <code class="block-code">git config --global --unset http.proxy<br>git config --global --unset https.proxy</code>
+              <p>2. <strong>开启 TUN：</strong>在代理软件（如 Clash）中打开 TUN 总开关（网络栈选 gvisor，开启 DNS 劫持，关闭严格路由）。</p>
+              <p>3. <strong>享受丝滑：</strong>此时代理软件会在底层接管电脑所有流量，Git 就能自动、顺畅地连网了，再也不用管端口配置！</p>
+          </li>
+
+          <li>
+              <h4>我改了多个文件，想给每个文件单独写清晰的 Commit 描述，怎么弄？</h4>
+              <div class="scene">遇到场景：不想用 git add . 把所有文件一锅端，导致描述不准确。</div>
+              <p><span class="highlight">解决方案：分批次“结账”。</span></p>
+              <p>1. 添加并提交第一个文件：</p>
+              <code class="block-code">git add 文件A.html<br>git commit -m "更新了A的标题"</code>
+              <p>2. 添加并提交第二个文件：</p>
+              <code class="block-code">git add 文件B.css<br>git commit -m "修改了B的颜色"</code>
+              <p>3. 最后一次性推送：<code>git push</code></p>
+          </li>
+
+          <li>
+              <h4>VS Code 提示“传出的更改”，而且我随便敲个空格它都提示我要提交，很烦！</h4>
+              <div class="scene">遇到场景：Git 过于敏感，记录了无用的空格或换行。</div>
+              <p><strong>概念梳理：</strong>“传出的更改”说明你已经 Commit 了，但还没 Push 到云端（货已打包，等待发车）。</p>
+              <p><span class="highlight">解决方案（对付乱报警的空格）：</span></p>
+              <p><strong>方法 1（撤销）：</strong>在 VS Code 源码管理里，点击文件旁边的“放弃更改”箭头，抹除这个空格。</p>
+              <p><strong>方法 2（一劳永逸）：</strong>在 VS Code 设置中搜索并勾选 <code>Trim Trailing Whitespace</code>，保存时自动删掉多余空格。</p>
+          </li>
+
+          <li>
+              <h4>同一个文件我改了两次，提交了两次（2个 Commit），Push 的时候会推送哪个？</h4>
+              <div class="scene">遇到场景：频繁小修改并提交。</div>
+              <p><strong>核心概念：</strong>Git 不是普通的云盘，它是<strong>“时间线连环画”</strong>。</p>
+              <p><span class="highlight">解答：</span>它会把这两个 Commit <strong>连带历史一起</strong>推送到云端。云端不仅会显示最新的文件状态，还会保留你这两次修改的完整历史记录，方便以后随时“时光倒流”。（程序员黄金法则：小步快跑，频繁 Commit 是好习惯！）</p>
+          </li>
+
+          <li>
+              <h4>暂存区是虚拟的，那“本地仓库”存的是我电脑上那些实际的文件吗？</h4>
+              <div class="scene">遇到场景：搞不清楚 Git 的文件到底存在哪里。</div>
+              <p><strong>核心概念（三树架构）：</strong></p>
+              <p>🌳 <strong>工作区：</strong>你的实际文件（你能看见的 HTML、CSS）。</p>
+              <p>🌳 <strong>暂存区：</strong>虚拟的取景器（<code>git add</code> 的地方）。</p>
+              <p>🌳 <strong>本地仓库：</strong>隐藏的 <code>.git</code> 文件夹（<code>git commit</code> 存放的地方）。这里存的是高度压缩的版本快照，它是你项目的“历史保险箱”。</p>
+          </li>
+
+          <li>
+              <h4>我害怕执行 git pull 把云端的代码拉下来，会把我本地辛辛苦苦写的心血覆盖掉！</h4>
+              <div class="scene">遇到场景：多人协作或多端同步时，不敢拉取代码。</div>
+              <p><strong>生存法则：</strong><span class="highlight">无 Commit，不 Pull</span>。</p>
+              <p><strong>解答：</strong>只要你在 Pull 之前，把本地的代码执行了 <code>git commit</code>（存进保险箱），你的代码就<strong>绝对不会丢</strong>！</p>
+              <p>如果没改同一行，Git 会自动完美融合；如果改了同一行（产生冲突），Git 会立刻停下来，在 VS Code 里把双方的代码都显示出来，让你通过点击按钮亲自决定保留哪个。</p>
+          </li>
+      </ol>
+
+      <h2>2. 一些Git 命令参数</h2>
+
+      <!-- git branch -->
+      <h3>git branch</h3>
+      <ul>
+          <li><span class="param">-r</span> <span class="desc">列出远程跟踪分支（如 <code>origin/main</code>）</span></li>
+          <li><span class="param">-a</span> <span class="desc">列出所有分支（本地+远程）</span></li>
+          <li><span class="param">-d</span> <span class="desc">删除已合并的本地分支（安全操作）</span></li>
+          <li><span class="param">-D</span> <span class="desc">强制删除未合并的本地分支</span></li>
+          <li><span class="param">-m</span> <span class="desc">重命名分支：<code>git branch -m 旧名 新名</code></span></li>
+          <li><span class="param">-u</span> <span class="desc">设置当前分支跟踪的远程分支：<code>git branch -u origin/dev</code></span></li>
+      </ul>
+
+      <!-- git push -->
+      <h3>git push</h3>
+      <ul>
+          <li><span class="param">-u</span> <span class="desc">推送并建立跟踪关系（上游），之后可直接 <code>git push</code></span></li>
+          <li><span class="param">-f (--force)</span> <span class="desc">强制推送，覆盖远程历史（⚠️ 慎用，尤其多人协作）</span></li>
+          <li><span class="param">--delete</span> <span class="desc">删除远程分支：<code>git push origin --delete dev</code></span></li>
+      </ul>
+
+      <!-- git commit -->
+      <h3>git commit</h3>
+      <ul>
+          <li><span class="param">-m</span> <span class="desc">直接附加提交信息：<code>git commit -m "信息"</code></span></li>
+          <li><span class="param">-a</span> <span class="desc">暂存所有已跟踪文件的修改并提交（相当于先 <code>git add -u</code>）</span></li>
+          <li><span class="param">--amend</span> <span class="desc">修改上一次提交（可修改信息或补充漏掉的文件）</span></li>
+      </ul>
+
+      <!-- git log -->
+      <h3>git log</h3>
+      <ul>
+          <li><span class="param">--oneline</span> <span class="desc">每个提交显示为一行简洁信息（哈希 + 标题）</span></li>
+          <li><span class="param">--graph</span> <span class="desc">以 ASCII 图显示分支合并历史</span></li>
+      </ul>
+
+      <!-- git add -->
+      <h3>git add</h3>
+      <ul>
+          <li><span class="param">.</span> <span class="desc">添加当前目录下所有变更（包括子目录）</span></li>
+          <li><span class="param">-A (--all)</span> <span class="desc">添加整个工作区所有变更（不受目录限制）</span></li>
+          <li><span class="param">-p</span> <span class="desc">交互式逐块选择添加（精细控制）</span></li>
+      </ul>
+
+      <!-- 其他常用 -->
+      <h3>其他常用命令参数</h3>
+      <ul>
+          <li><span class="param">git checkout -b</span> <span class="desc">创建并切换到新分支（传统）</span></li>
+          <li><span class="param">git switch -c</span> <span class="desc">创建并切换到新分支（新版推荐）</span></li>
+          <li><span class="param">git stash -m "说明"</span> <span class="desc">暂存当前修改并添加说明</span></li>
+          <li><span class="param">git stash pop</span> <span class="desc">恢复最近一次暂存并删除该暂存记录</span></li>
+      </ul>
+        
   <script src="./scripts/main.js"></script>
   </body>
 </html>
