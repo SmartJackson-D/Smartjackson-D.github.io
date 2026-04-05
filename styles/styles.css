@@ -81,3 +81,9 @@ code {
     font-family: 'Consolas', 'Courier New', monospace;
     font-size: 0.9em;
 }
+
+a {
+    color: #2980b9; /* 经典的蓝色链接，和暖色调形成对比 */
+    text-decoration: none;
+    font-size: 16px;
+}
