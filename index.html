@@ -73,7 +73,7 @@
               <p>1. <strong>清空旧设置：</strong>在终端运行以下命令让 Git 恢复白纸状态：</p>
               <code class="block-code">git config --global --unset http.proxy<br>git config --global --unset https.proxy</code>
               <p>恢复端口配置:</p>
-              <code class="block-code">git config --global --unset http.proxy http://127.0.0.1:7890<br>git config --global --unset https.proxy https://127.0.0.1:7890</code>
+              <code class="block-code">git config --global http.proxy http://127.0.0.1:7890<br>git config --global   https.proxy https://127.0.0.1:7890</code>
               <p>2. <strong>开启 TUN：</strong>在代理软件（如 Clash）中打开 TUN 总开关（网络栈选 gvisor，开启 DNS 劫持，关闭严格路由）。</p>
               <p>3. <strong>享受丝滑：</strong>此时代理软件会在底层接管电脑所有流量，Git 就能自动、顺畅地连网了，再也不用管端口配置！</p>
           </li>
