@@ -211,7 +211,82 @@
             </ul>
         </li>
     </ul>
-    </body>
+
+    <h1>学习网页的第六天(4.9)</h1>
+    <h2>Git 核心命令对比：rm --cached vs restore --staged</h2>
+    
+    <p>这两个命令都会将文件从<strong>暂存区（缓存区）</strong>移出，导致你当前的修改不会被提交。但它们的底层逻辑和最终目的完全不同。</p>
+
+    <h3>1. 核心差异对比</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>特性</th>
+                <th><code>git rm --cached &lt;文件&gt;</code></th>
+                <th><code>git restore --staged &lt;文件&gt;</code></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>底层逻辑</strong></td>
+                <td><strong>移除指针</strong>。告诉 Git 下个版本不再指向这个文件。</td>
+                <td><strong>回退指针</strong>。把暂存区的指针拨回上一个版本的状态。</td>
+            </tr>
+            <tr>
+                <td><strong>对下个版本的影响</strong></td>
+                <td>该文件在下个版本的快照中<strong>消失</strong>了。</td>
+                <td>该文件在下个版本中<strong>依然存在</strong>（保持上个版本的原样）。</td>
+            </tr>
+            <tr>
+                <td><strong>文件的状态变化</strong></td>
+                <td>变成 <strong>未追踪 (Untracked)</strong>。</td>
+                <td>依然是 <strong>已追踪 (Tracked)</strong>，但变回“未暂存”状态。</td>
+            </tr>
+            <tr>
+                <td><strong>开发者的真实意图</strong></td>
+                <td>“我不希望 Git 以后再管理这个文件了。”</td>
+                <td>“我刚 <code>add</code> 错了，想分批提交或者重写代码。”</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2. 深度理解：基于“快照与指针”模型</h3>
+    <p>Git 的每个版本（Commit）都是一张包含所有文件的完整快照。</p>
+    <ul>
+        <li><strong>执行 <code>git rm --cached</code>：</strong>你强制切断了“暂存区”里该文件的链接。这意味着当你 Commit 时，新的快照里<strong>不会</strong>有这个文件的信息。它从版本库中被“开除”了。</li>
+        <li><strong>执行 <code>git restore --staged</code>：</strong>你只是把“暂存区”里那个指向新修改的指针，拨回到了“旧版本”的位置。当你 Commit 时，新的快照里<strong>依然会</strong>通过指针包含这个文件，只是它的内容和你这次修改前一模一样。</li>
+    </ul>
+
+    <h3>3. 实际开发中的应用场景</h3>
+
+    <div class="scenario">
+        <h4>场景 A：使用 <code>git rm --cached</code> —— “清理门户”</h4>
+        <p><strong>场景：</strong>你想让下一个版本没有这个文件，并且未来也不再从上一个版本复制（指引）过来。例如不小心把 <code>.vscode</code> 配置或 <code>node_modules</code> 提交了。</p>
+        <p><strong>操作流程：</strong></p>
+        <ol>
+            <li><code>git rm --cached -r node_modules/</code> （让文件在仓库里“死亡”，但本地实体还在）</li>
+            <li>在 <code>.gitignore</code> 里加上 <code>node_modules/</code></li>
+            <li><code>git commit -m "不再追踪依赖文件夹"</code></li>
+        </ol>
+    </div>
+
+    <div class="scenario">
+        <h4>场景 B：使用 <code>git restore --staged</code> —— “精细化提交 (Atomic Commits)”</h4>
+        <p><strong>场景：</strong>你多修改了一个文件，本想分次提交写更清晰的 Commit 描述，却手滑 <code>git add .</code> 全加进去了。</p>
+        <p><strong>操作流程：</strong></p>
+        <ol>
+            <li><code>git restore --staged 文件B 文件C</code> （把不想这次提交的文件移出暂存区）</li>
+            <li><code>git commit -m "fix: 修复了功能A的Bug"</code></li>
+            <li><code>git add 文件B 文件C</code></li>
+            <li><code>git commit -m "feat: 开发了新功能"</code></li>
+        </ol>
+    </div>
+
+    <div class="highlight-box">
+        <strong>💡 记忆口诀：</strong><br>
+        <code>rm --cached</code>：<strong>删</strong>除追踪（让文件在仓库快照里“消失”）。<br>
+        <code>restore --staged</code>：<strong>撤</strong>销暂存（让修改回到“等待被 add”的状态）。
+    </div>
   
   </body>
 </html>
