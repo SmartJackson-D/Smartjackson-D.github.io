@@ -3,7 +3,7 @@ const myImage =document.querySelector('img');
 myImage.onclick = () => {
     const mySrc = myImage.getAttribute('src');
     if(mySrc === './images/001.jpg') {
-      myImage.setAttribute('src','./images/002.jpg');
+      myImage.setAttribute('src','./images/西湖墨意.jpg');
     } else {
       myImage.setAttribute('src','./images/001.jpg');
     }
@@ -12,7 +12,7 @@ myImage.onclick = () => {
 let myButton =document.querySelector('button');
 let myHeading =document.querySelector('h1');
 
-let OwerName = "Samui";
+let OwerName = "Karai";
 
 function setUserName() {
   let myName = prompt('输入你的名字吧');

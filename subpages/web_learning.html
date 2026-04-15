@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>网页技术学习</title>
+    <link href="../styles/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../scripts/main.js" defer></script>
+  </head>
+  <body>
+  <a href="../index.html">返回主页</a>
+  <h1>这是我的第一个网页</h1>
+    <img src="../images/001.jpg" alt="My test image" />
+    <p>这是<strong>第一个</strong>段落。哈哈，我还不知道要写些什么要好，要开始学习网页制作了，很开心。就先写这些吧。</p>
+    <p>这是一个无序列表：</p>
+    <ul>
+      <li>这是第一元素呢</li>
+      <li>第二个元素，能不能添加表情包呢</li>
+      <li>第三个元素是表情包😊，直接粘贴的</li>
+    </ul>
+  <p>我要添加链接了，先添加一个bing的网站链接吧。<a href="https://www.bing.com">Bing搜索引擎</a></p>
+  <p>第一网站的学习先到这里结束了</p>
+  <p>下面这个按钮可以更改用户名：<button>Change user</button> </p>
+
+  <h1>学习网页(3.15)</h1>
+  <em>学习网页第二天，开始完整的学习html了，这里是一个斜体文本类型使用em标签</em>
+
+
+  <p>  <!-- 使用 disabled 属性来防止终端用户输入文本到输入框中 -->
+  <input type="text" disabled />
+
+  <!-- 下面这个输入框不包含 disabled 属性，所以用户可以向其中输入 -->
+   <input type="text" />
+  </p>
+  <h2>1. 练习网页链接</h2>
+  <p>这是一个有title的链接:<a href="https://www.baidu.com" title="baidu">百度搜索引擎</a></p>
+  <p>这是一个没有title的链接：<a href="https://developer.mozilla.org/">Mozilla Developer Network</a></p>
+  <h2>2. 特殊字符输入方法</h2>
+  <ul>
+      <li>小于号&lt;: &+lt;</li>
+      <li>大于号&gt;: &+gt;</li>
+      <li>双引号&quot; :&+quot;</li>
+      <li>单引号&apos; :&+apos;</li>
+      <li>和号&amp; : &+amp;</li>
+  </ul>
+  <h2>3. 注释方法</h2>
+  <p>注释：&lt;!-- 输入注释内容 --&gt;。</p>
+  <p>注释内容不会显示在网页上，这里使用特殊字符的输入方法来写尖括号，所以不是注释，会显示在网页上，在实际注释的时候直接打尖括号就行了</p>
+  
+  
+<h1>学习网页-tags in head(3.22)</h1>
+<p>Today, I want to document what I've learned in English.</p>
+<p>I've learned about the <code>&lt;head&gt;</code> tag and some of its most common elements.</p>
+
+<h2>1. Common <code>&lt;head&gt;</code> Elements (Tags)</h2>
+<ul>
+    <li>
+        <code>&lt;title&gt;</code> You use this tag like this: <code>&lt;title&gt;My Page Title&lt;/title&gt;</code>. It defines the title of the page, which is what you see on the <strong>browser tab</strong>.
+    </li>
+    
+    <li>
+        <code>&lt;meta&gt;</code> It uses various attributes to define the page's metadata.
+        <ul>
+            <li>Use the <code>charset</code> attribute to define the character encoding. It is very important and must be included. You use it like this: <code>&lt;meta charset="UTF-8"&gt;</code>. You can also set <code>charset</code> to other encodings.</li>
+            <li>Use the <code>name</code> and <code>content</code> attributes to communicate with search engines. When you search for something online, you see a short description <strong>below</strong> the website link. This is exactly what this attribute does! Example: <code>&lt;meta name="description" content="This is my page description."&gt;</code>. You can also use other names like "keywords" or "author".</li>
+        </ul>
+    </li>
+    
+    <li>
+        <code>&lt;link&gt;</code> This is an important tag used to link external resources. It has two basic attributes: <code>rel</code> and <code>href</code>. The <code>rel</code> attribute specifies the relationship between the document and the resource. The <code>href</code> attribute is the path (relative or absolute URL). Common <code>rel</code> values include:
+        <ul>
+            <li><code>stylesheet</code> for CSS files.</li>
+            <li><code>icon</code> for favicon files.</li>
+            <li><code>preload</code> for preloading resources (like fonts or pictures).</li>
+        </ul>  
+        A common use case is linking a CSS file: <code>&lt;link rel="stylesheet" href="path/styles.css"&gt;</code>.
+    </li>
+    
+    <li>
+        <code>&lt;script&gt;</code> This tag is used to include JavaScript code. It has two important attributes: <code>src</code> (to specify the file path) and <code>defer</code> (to delay execution until the HTML is fully parsed). Here are two ways to use it:
+        <ul>
+            <li>When used in the <code>&lt;head&gt;</code> section, it <strong>must</strong> have the <code>defer</code> attribute: <code>&lt;script src="path/script.js" defer&gt;&lt;/script&gt;</code></li>
+            <li>When used in the <code>&lt;body&gt;</code> section, it must be placed at the very bottom, right before the closing <code>&lt;/body&gt;</code> tag: <code>&lt;script src="path/script.js"&gt;&lt;/script&gt;</code></li>
+        </ul>
+    </li>
+</ul>
+  </body>
+</html>
