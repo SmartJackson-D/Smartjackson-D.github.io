@@ -49,41 +49,84 @@
   <p>注释内容不会显示在网页上，这里使用特殊字符的输入方法来写尖括号，所以不是注释，会显示在网页上，在实际注释的时候直接打尖括号就行了</p>
   
   
-<h1>学习网页-tags in head(3.22)</h1>
-<p>Today, I want to document what I've learned in English.</p>
-<p>I've learned about the <code>&lt;head&gt;</code> tag and some of its most common elements.</p>
+    <h1>学习网页-tags in head(3.22)</h1>
+    <p>Today, I want to document what I've learned in English.</p>
+    <p>I've learned about the <code>&lt;head&gt;</code> tag and some of its most common elements.</p>
 
-<h2>1. Common <code>&lt;head&gt;</code> Elements (Tags)</h2>
-<ul>
-    <li>
-        <code>&lt;title&gt;</code> You use this tag like this: <code>&lt;title&gt;My Page Title&lt;/title&gt;</code>. It defines the title of the page, which is what you see on the <strong>browser tab</strong>.
-    </li>
-    
-    <li>
-        <code>&lt;meta&gt;</code> It uses various attributes to define the page's metadata.
+    <h2>1. Common <code>&lt;head&gt;</code> Elements (Tags)</h2>
+    <ul>
+        <li>
+            <code>&lt;title&gt;</code> You use this tag like this: <code>&lt;title&gt;My Page Title&lt;/title&gt;</code>. It defines the title of the page, which is what you see on the <strong>browser tab</strong>.
+        </li>
+        
+        <li>
+            <code>&lt;meta&gt;</code> It uses various attributes to define the page's metadata.
+            <ul>
+                <li>Use the <code>charset</code> attribute to define the character encoding. It is very important and must be included. You use it like this: <code>&lt;meta charset="UTF-8"&gt;</code>. You can also set <code>charset</code> to other encodings.</li>
+                <li>Use the <code>name</code> and <code>content</code> attributes to communicate with search engines. When you search for something online, you see a short description <strong>below</strong> the website link. This is exactly what this attribute does! Example: <code>&lt;meta name="description" content="This is my page description."&gt;</code>. You can also use other names like "keywords" or "author".</li>
+            </ul>
+        </li>
+        
+        <li>
+            <code>&lt;link&gt;</code> This is an important tag used to link external resources. It has two basic attributes: <code>rel</code> and <code>href</code>. The <code>rel</code> attribute specifies the relationship between the document and the resource. The <code>href</code> attribute is the path (relative or absolute URL). Common <code>rel</code> values include:
+            <ul>
+                <li><code>stylesheet</code> for CSS files.</li>
+                <li><code>icon</code> for favicon files.</li>
+                <li><code>preload</code> for preloading resources (like fonts or pictures).</li>
+            </ul>  
+            A common use case is linking a CSS file: <code>&lt;link rel="stylesheet" href="path/styles.css"&gt;</code>.
+        </li>
+        
+        <li>
+            <code>&lt;script&gt;</code> This tag is used to include JavaScript code. It has two important attributes: <code>src</code> (to specify the file path) and <code>defer</code> (to delay execution until the HTML is fully parsed). Here are two ways to use it:
+            <ul>
+                <li>When used in the <code>&lt;head&gt;</code> section, it <strong>must</strong> have the <code>defer</code> attribute: <code>&lt;script src="path/script.js" defer&gt;&lt;/script&gt;</code></li>
+                <li>When used in the <code>&lt;body&gt;</code> section, it must be placed at the very bottom, right before the closing <code>&lt;/body&gt;</code> tag: <code>&lt;script src="path/script.js"&gt;&lt;/script&gt;</code></li>
+            </ul>
+        </li>
+    </ul>
+<!-- ----------------------------------------------------------------------------------------------------------------->
+    <h1>学习网页-语义标签(<time datetime="2026-04-18">4.18</time>)</h1>
+    <p>语义标签是指那些能够清晰地描述其内容和目的的HTML标签。<strong>这种语义标签不但会带来视觉上的区别，而且还会让计算机理解文本，在一些无障碍上会更有帮助。</strong>使用语义标签可以提高网页的可读性、可维护性和搜索引擎优化（SEO）。<以下是一些常见的语义标签：</p>
+    <ol>
+        <li>强调语义标签：</li>
         <ul>
-            <li>Use the <code>charset</code> attribute to define the character encoding. It is very important and must be included. You use it like this: <code>&lt;meta charset="UTF-8"&gt;</code>. You can also set <code>charset</code> to other encodings.</li>
-            <li>Use the <code>name</code> and <code>content</code> attributes to communicate with search engines. When you search for something online, you see a short description <strong>below</strong> the website link. This is exactly what this attribute does! Example: <code>&lt;meta name="description" content="This is my page description."&gt;</code>. You can also use other names like "keywords" or "author".</li>
+            <li><code>&lt;strong&gt;</code> 加粗文本,用于表示重要性较高的文本</li>
+            <li><code>&lt;em&gt;</code> 斜体文本,用于表示强调的文本</li>
         </ul>
-    </li>
-    
-    <li>
-        <code>&lt;link&gt;</code> This is an important tag used to link external resources. It has two basic attributes: <code>rel</code> and <code>href</code>. The <code>rel</code> attribute specifies the relationship between the document and the resource. The <code>href</code> attribute is the path (relative or absolute URL). Common <code>rel</code> values include:
+        <li>引用标签：</li>
         <ul>
-            <li><code>stylesheet</code> for CSS files.</li>
-            <li><code>icon</code> for favicon files.</li>
-            <li><code>preload</code> for preloading resources (like fonts or pictures).</li>
-        </ul>  
-        A common use case is linking a CSS file: <code>&lt;link rel="stylesheet" href="path/styles.css"&gt;</code>.
-    </li>
-    
-    <li>
-        <code>&lt;script&gt;</code> This tag is used to include JavaScript code. It has two important attributes: <code>src</code> (to specify the file path) and <code>defer</code> (to delay execution until the HTML is fully parsed). Here are two ways to use it:
-        <ul>
-            <li>When used in the <code>&lt;head&gt;</code> section, it <strong>must</strong> have the <code>defer</code> attribute: <code>&lt;script src="path/script.js" defer&gt;&lt;/script&gt;</code></li>
-            <li>When used in the <code>&lt;body&gt;</code> section, it must be placed at the very bottom, right before the closing <code>&lt;/body&gt;</code> tag: <code>&lt;script src="path/script.js"&gt;&lt;/script&gt;</code></li>
+            <li><code>&lt;blockquote&gt;</code> 块引用，在标签内使用<code>&lt;cite&gt;</code> 属性来指定引用的来源。使用例子：<code>&lt;blockquote cite="a link"&gt; &lt;/blockquote&gt;</code></li>
+            <li><code>&lt;q&gt;</code> 行内引用，在标签内使用<code>&lt;cite&gt;</code> 属性来指定引用的来源。使用例子：<code>&lt;q cite="a link"&gt; &lt;/q&gt;</code></li>
         </ul>
-    </li>
-</ul>
-  </body>
+·       <li>时间标签：</li>
+        <ul>
+            <li><code>&lt;time&gt;</code> 用于表示日期或时间。它有一个重要的属性是<code>datetime</code>，用于指定机器可读的日期或时间格式。使用例子：<code>&lt;time datetime="2026-04-18"&gt;4.18&lt;/time&gt;</code></li>
+        </ul>
+        <li>地址标签：</li>
+        <ul>
+            <li><code>&lt;address&gt;</code> 用于表示联系信息，通常包含作者的姓名、电子邮件地址、电话号码等。使用例子：<code>&lt;address&gt;John Doe<br> &lt;address&gt;</code>
+            </li>
+        </ul>
+        
+        <li>代码标签：</li>
+        <ul>
+            <li><code>&lt;code&gt;</code> 用于表示代码片段</li>
+            <li><code>&lt;pre&gt;</code> 用于表示预格式化文本，通常用于显示代码块,创建一个空白块，然后在里面使用code标签</li>
+            <li><code>&lt;var&gt;</code> 用于表示变量</li>
+            <li><code>&lt;samp&gt;</code> 用于表示计算机输出的样本</li>
+            <li><code>&lt;kbd&gt;</code> 用于表示用户输入的文本</li>
+            <li>完整的使用案例: <code>&lt;pre&gt;&lt;code&gt;console.log("Hello, World!");&lt;/code&gt;&lt;/pre&gt;</code> 这段代码会在网页上显示一个格式化的代码块，里面包含了一个简单的JavaScript代码片段：<pre><code>console.log("Hello, World!");</code></pre></li>
+            </code> </li>
+        </ul>
+        <li>上下标标签：</li>
+        <ul>
+            <li><code>&lt;sub&gt;</code> 用于表示下标</li>
+            <li><code>&lt;sup&gt;</code> 用于表示上标</li>
+        </ul>
+        
+    </ol>
+
+    </body>
+
 </html>
