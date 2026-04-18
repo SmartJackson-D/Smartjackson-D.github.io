@@ -98,6 +98,7 @@
         <ul>
             <li><code>&lt;blockquote&gt;</code> 块引用，在标签内使用<code>&lt;cite&gt;</code> 属性来指定引用的来源。使用例子：<code>&lt;blockquote cite="a link"&gt; &lt;/blockquote&gt;</code></li>
             <li><code>&lt;q&gt;</code> 行内引用，在标签内使用<code>&lt;cite&gt;</code> 属性来指定引用的来源。使用例子：<code>&lt;q cite="a link"&gt; &lt;/q&gt;</code></li>
+            <li><code>&lt;cite&gt;</code> 用于<strong>直接</strong>表示引用的来源，会让引用斜体，可以是书籍、文章、网站等。使用例子：<code>&lt;cite&gt;The Great Gatsby&lt;/cite&gt;</code></li>
         </ul>
 ·       <li>时间标签：</li>
         <ul>
@@ -126,7 +127,27 @@
         </ul>
         
     </ol>
+<!----------------------------------------------------------------------------------------------------------------->
+    <h1>学习网页-练习（<time datetime="04-18">4.18</time>）</h1>
+    <h2>Advanced text semantics</h2>
 
+    <p>Let's start with a quote:</p>
+    <blockquote cite="https://developer.mozilla.org/zh-CN/docs/Learn_web_development/Core/Accessibility">
+        <p>
+        <abbr title="Hypertext Markup Language">HTML</abbr>, Hypertext Markup Language is by default accessible, if used correctly.
+        </p>
+    </blockquote>
+
+    <p><abbr title="Cascading Style Sheets">CSS</abbr> can also be used to make web pages more, or less, accessible.</p>
+
+    <p>Chemical Formulae: H<sub>2</sub>O (Water), C<sub>2</sub>H<sub>6</sub>O (Ethanol).</p>
+
+    <p>
+    Dates: <time datetime="2019-12-25">December 25<sup>th</sup> 2019 (Christmas Day)</time>, <time datetime="2019-11-02">November 2<sub>nd</sub> 2019 (Día de los
+    Muertos)</time>.
+    </p>
+    <p>信件书写练习：</p>
+    <a href="./exercise_write_letter.html">信件链接</a>
     </body>
 
 </html>
