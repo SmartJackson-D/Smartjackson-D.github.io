@@ -80,6 +80,7 @@ code {
     border-radius: 6px;
     font-family: 'Consolas', 'Courier New', monospace;
     font-size: 0.9em;
+    line-height: 20px;
 }
 
 a {
