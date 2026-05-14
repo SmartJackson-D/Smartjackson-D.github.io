@@ -6,15 +6,56 @@ html {
 }
 
 /* 2. 主容器：柔和的奶白色卡片和暖色阴影 */
-body {
+
+body.subpage {
   width: 700px;
   margin: 40px auto;
-  background-color: #fffdf8; /* 偏暖的奶白色，契合米色大背景 */
+  background-color: #fffdf8;
   padding: 40px 50px;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(139, 115, 85, 0.08); /* 偏棕色调的轻微立体阴影 */
-  color: #4a4a4a; /* 正文使用深暖灰，比纯黑看着更舒服 */
+  box-shadow: 0 10px 30px rgba(139, 115, 85, 0.08);
+  color: #4a4a4a; 
 }
+
+body.homepage {
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+
+  font-family: Arial, sans-serif;
+}
+
+body.homepage::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: url("../images/background.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  z-index: -1;
+}
+
+body.homepage .page {
+  width: 600px;
+  min-height: 100vh;
+
+  margin-left: 8vw;
+  padding: 80px 48px;
+  box-sizing: border-box;
+
+  background: rgba(255, 253, 248, 0.9);
+  color: #3f3f3f;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
 
 /* 3. 主标题：深咖啡色，保留你的艺术字体 */
 h1 {
